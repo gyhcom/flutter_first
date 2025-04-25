@@ -46,3 +46,6 @@ app.*.map.json
 
 # 개인 설정 무시
 ios/Runner.xcworkspace/contents.xcworkspacedata
+
+# 백엔드 노드모듈
+/backend_api/node_modules/
