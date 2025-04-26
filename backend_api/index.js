@@ -9,7 +9,7 @@ const PORT = 3000;
 
 // 🌐 MongoDB 연결 문자열 (MongoDB Atlas 사용)
 const DB =
-  "mongodb+srv://gyeonho:kang12new@cluster0.dipt9q7.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+  "mongodb+srv://@cluster0.dipt9q7.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 
 // 🚀 Express 애플리케이션 인스턴스 생성
 const app = express();
