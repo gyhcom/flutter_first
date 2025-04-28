@@ -2,6 +2,7 @@ const express = require("express");
 // User 모델을 가져옵니다.
 const User = require("../models/user");
 // express 모듈을 가져옵니다.
+const bcrypt = require('bcryptjs');
 const authRouter = express.Router();
 // 회원가입 라우터를 정의합니다.POST 요청을 처리하는 "/api/signup" 경로를 정의합니다.클라이언트가 회원가입 정보를 전송하면 이 핸들러가 실행됩니다.
 authRouter.post("/api/signup", async (req, res) => {
@@ -16,8 +17,13 @@ authRouter.post("/api/signup", async (req, res) => {
         .status(400)
         .json({ msg: "user with same email already exist" });
     } else {
+
+      const salt = await bcrypt.genSalt(20);
+
+      hashedPassword = await bcrypt.hash(password, salt);
+
       // 이메일이 존재하지 않으면 새로운 사용자를 생성합니다.
-      var user = new User({ fullname, email, password }).save();
+      let user = new User({ fullname, email, password: hashedPassword });
       user = await user.save();
       res.json({ user }); // 사용자 정보를 반환합니다.
     }
