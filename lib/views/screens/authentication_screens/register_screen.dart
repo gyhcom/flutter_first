@@ -9,7 +9,9 @@ class RegisterScreen extends StatefulWidget {
 
 class _RegisterScreenState extends State<RegisterScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
+  late String email;
+  late String password;
+  late String fullName;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,6 +61,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ),
                 ),
                 TextFormField(
+                  onChanged: (value) {
+                    email = value;
+                  },
                   validator: (value) {
                     if (value!.isEmpty) {
                       return "enter your full name";
@@ -92,6 +97,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 ),
                 SizedBox(height: 20),
                 TextFormField(
+                  onChanged: (value) {
+                    fullName = value;
+                  },
                   validator: (value) {
                     if (value!.isEmpty) {
                       return "enter your full name";
@@ -127,6 +135,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 SizedBox(height: 20),
 
                 TextFormField(
+                  onChanged: (value) {
+                    password = value;
+                  },
                   validator: (value) {
                     if (value!.isEmpty) {
                       return "enter your password";
@@ -164,7 +175,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 InkWell(
                   onTap: () {
                     if (_formKey.currentState!.validate()) {
-                      print('correct');
+                      print(email);
+                      print(password);
+                      print(fullName);
                     } else {
                       print('failed');
                     }
