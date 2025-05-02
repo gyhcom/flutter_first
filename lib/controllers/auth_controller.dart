@@ -1,3 +1,4 @@
+import 'package:store_app/global_variables.dart';
 import 'package:store_app/models/user.dart';
 import 'package:http/http.dart' as http;
 import 'package:store_app/services/manage_http_response.dart';
