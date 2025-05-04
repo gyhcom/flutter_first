@@ -46,6 +46,7 @@ module.exports = authRouter;
 
 authRouter.post("/api/login", async (req, res) => {
  console.time("로그인 소요 시간");
+ console.log("받은 데이터:", req.body);
   try {
     const { email, password } = req.body;
 

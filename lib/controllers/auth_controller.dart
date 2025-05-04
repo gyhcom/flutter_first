@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:store_app/global_variables.dart';
 import 'package:store_app/models/user.dart';
 import 'package:http/http.dart' as http;
@@ -13,12 +14,14 @@ class AuthController {
     try {
       User user = User(
         id: '',
+        fullName: fullName,
         email: email,
         state: '',
         city: '',
         locality: '',
         password: password,
       );
+      print(user.toJson());
       http.Response response = await http.post(
         Uri.parse('$uri/api/signup'), //아 이게 저번에 로컬쪽 세팅하는거였는데 내가 안함 에러 맞음
         body: user.toJson(), // User 객체를 JSON 문자열로 변환
