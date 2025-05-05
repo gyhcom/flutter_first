@@ -49,13 +49,25 @@ class AuthController {
     required String password,
   }) async {
     try {
-      await http.post(
+      http.Response response = await http.post(
         Uri.parse("$uri/api/signin"),
         body: jsonEncode({
           'email': email, // 이메일
           'password': password, // 비밀번호
         }),
+        headers: <String, String>{
+          // 요청 헤더
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
       );
+      ManageHttpResponse(
+        response: response,
+        context: context,
+        onSuccess: () {
+          showSnackBar(context, "로그인 성공"); // 로그인 성공 시 처리
+        },
+      );
+      // 응답 처리
     } catch (e) {
       print(e);
     }
