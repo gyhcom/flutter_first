@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:store_app/global_variables.dart';
 import 'package:store_app/models/user.dart';
@@ -35,6 +37,24 @@ class AuthController {
         onSuccess: () {
           showSnackBar(context, "회원가입 성공");
         },
+      );
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  Future<void> signInUsers({
+    required context,
+    required String email,
+    required String password,
+  }) async {
+    try {
+      await http.post(
+        Uri.parse("$uri/api/signin"),
+        body: jsonEncode({
+          'email': email, // 이메일
+          'password': password, // 비밀번호
+        }),
       );
     } catch (e) {
       print(e);
