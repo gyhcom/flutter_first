@@ -49,8 +49,12 @@ class AuthController {
     required String password,
   }) async {
     try {
+      print("📤 로그인 요청 보냄");
+      print("📧 email: $email");
+      print("🔐 password: $password");
+
       http.Response response = await http.post(
-        Uri.parse("$uri/api/signin"),
+        Uri.parse("$uri/api/login"), // 로그인 API URL
         body: jsonEncode({
           'email': email, // 이메일
           'password': password, // 비밀번호
@@ -60,10 +64,15 @@ class AuthController {
           'Content-Type': 'application/json; charset=UTF-8',
         },
       );
+
+      print("📥 응답 상태 코드: ${response.statusCode}");
+      print("📥 응답 본문: ${response.body}");
+
       ManageHttpResponse(
         response: response,
         context: context,
         onSuccess: () {
+          print("✅ onSuccess 콜백 호출됨");
           showSnackBar(context, "로그인 성공"); // 로그인 성공 시 처리
         },
       );

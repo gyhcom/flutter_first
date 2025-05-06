@@ -141,9 +141,13 @@ class _LoginScreenState extends State<LoginScreen> {
                   SizedBox(height: 20),
 
                   InkWell(
-                    onTap: () {
+                    onTap: () async {
                       if (_formKey.currentState!.validate()) {
-                        print('pass');
+                        await _authController.signInUsers(
+                          context: context,
+                          email: email,
+                          password: password,
+                        );
                       } else {
                         print('failed');
                       }
