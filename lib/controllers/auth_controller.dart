@@ -22,6 +22,7 @@ class AuthController {
         city: '',
         locality: '',
         password: password,
+        token: '',
       );
       print(user.toJson());
       http.Response response = await http.post(

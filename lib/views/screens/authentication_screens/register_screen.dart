@@ -15,6 +15,25 @@ class _RegisterScreenState extends State<RegisterScreen> {
   late String email;
   late String password;
   late String fullName;
+  bool _isLoading = false;
+  registerUser() async {
+    setState(() {
+      _isLoading = true;
+    });
+    await _authController
+        .signUpUsers(
+          context: context,
+          fullName: fullName,
+          email: email,
+          password: password,
+        )
+        .whenComplete(() {
+          _formKey.currentState!.reset();
+          setState(() {
+            _isLoading = false;
+          });
+        });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -135,13 +154,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       onTap: () async {
         if (_formKey.currentState!.validate()) {
           print('📧 $email, 👤 $fullName, 🔐 $password');
-
-          await _authController.signUpUsers(
-            context: context,
-            fullName: fullName,
-            email: email,
-            password: password,
-          );
+          await registerUser();
         }
       },
       child: Container(
@@ -154,14 +167,17 @@ class _RegisterScreenState extends State<RegisterScreen> {
           ),
         ),
         child: Center(
-          child: Text(
-            'Sign Up',
-            style: GoogleFonts.lato(
-              color: Colors.white,
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
+          child:
+              _isLoading
+                  ? const CircularProgressIndicator(color: Colors.white)
+                  : Text(
+                    'Sign Up',
+                    style: GoogleFonts.lato(
+                      color: Colors.white,
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
         ),
       ),
     );
