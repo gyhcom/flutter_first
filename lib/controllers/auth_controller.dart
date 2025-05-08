@@ -6,6 +6,7 @@ import 'package:store_app/models/user.dart';
 import 'package:http/http.dart' as http;
 import 'package:store_app/services/manage_http_response.dart';
 import 'package:store_app/views/screens/authentication_screens/login_screen.dart';
+import 'package:store_app/views/screens/main_screen.dart';
 
 class AuthController {
   Future<void> signUpUsers({
@@ -79,6 +80,11 @@ class AuthController {
         response: response,
         context: context,
         onSuccess: () {
+          Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(builder: (context) => MainScreen()),
+            (route) => false,
+          );
           print("✅ onSuccess 콜백 호출됨");
           showSnackBar(context, "로그인 성공"); // 로그인 성공 시 처리
         },

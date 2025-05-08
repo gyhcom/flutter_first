@@ -9,6 +9,9 @@ authRouter.post("/api/signup", async (req, res) => {
   try {
     const { fullname, email, password } = req.body;
     const existingEmail = await User.findOne({ email });// 이메일이 이미 존재하는지 확인합니다.
+    if (!password || password.length < 8) {// 비밀번호가 없거나 8자리 미만이면 에러 메시지를 반환합니다.
+      return res.status(400).json({ msg: "패스워드는 8자리 이상이어야 합니다." });
+    }
     if (existingEmail) {// 이메일이 이미 존재하면 400 상태 코드와 함께 에러 메시지를 반환합니다.
       return res
         .status(400)
