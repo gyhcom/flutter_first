@@ -4,24 +4,27 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 void ManageHttpResponse({
-  required http.Response response, // HTTP 응답
-  required BuildContext
-  context, // BuildContext는 Flutter의 UI 트리에서 현재 위치를 나타내는 객체
-  required Function onSuccess, // 성공 시 호출할 콜백 함수
+  required http.Response response,
+  required BuildContext context,
+  required Function onSuccess,
 }) {
+  final resBody = json.decode(response.body);
+  final msg = resBody['msg'] ?? resBody['message'] ?? 'Something went wrong';
+
   switch (response.statusCode) {
-    case 200: // 성공
+    case 200:
       onSuccess();
       break;
-    case 400:
-      showSnackBar(context, json.decode(response.body)['msg']); // 잘못된 요청
+
+    case 201: // 예: 회원가입 성공 메시지
+    case 400: // 잘못된 요청 (이메일 형식 등)
+    case 500: // 서버 에러
+      showSnackBar(context, msg);
       break;
-    case 500:
-      showSnackBar(context, json.decode(response.body)['msg']); // 서버 오류
-      break;
-    case 201:
-      showSnackBar(context, json.decode(response.body)['msg']); // 회원가입 성공
-      break;
+
+    default:
+      // 예외 상태 코드 (403, 404 등)
+      showSnackBar(context, msg);
   }
 }
 

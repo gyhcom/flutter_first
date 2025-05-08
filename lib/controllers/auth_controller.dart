@@ -5,6 +5,7 @@ import 'package:store_app/global_variables.dart';
 import 'package:store_app/models/user.dart';
 import 'package:http/http.dart' as http;
 import 'package:store_app/services/manage_http_response.dart';
+import 'package:store_app/views/screens/authentication_screens/login_screen.dart';
 
 class AuthController {
   Future<void> signUpUsers({
@@ -36,6 +37,11 @@ class AuthController {
         response: response,
         context: context,
         onSuccess: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const LoginScreen()),
+          );
+
           showSnackBar(context, "회원가입 성공");
         },
       );

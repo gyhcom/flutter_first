@@ -20,7 +20,7 @@ const userSchema = new mongoose.Schema({
           /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         return result.test(value);
       },
-      message: "Please enter a valid email address", // 이메일 형식이 잘못된 경우의 에러 메시지
+      message: "이메일 형식이 잘못되었습니다.", // 이메일 형식이 잘못된 경우의 에러 메시지
     },
   },
 
@@ -47,7 +47,7 @@ const userSchema = new mongoose.Schema({
         // 비밀번호 길이 검증
         return value.length >= 8; // 최소 6자 이상
       },
-      message: "Password must be at least 8 characters long", // 비밀번호 길이가 짧은 경우의 에러 메시지
+      message: "패스워드는 8자리 이상이어야 합니다.", // 비밀번호 길이가 짧은 경우의 에러 메시지
     },
   },
 });

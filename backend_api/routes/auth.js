@@ -3,8 +3,8 @@ const User = require("../models/user");// express 모듈을 가져옵니다.
 const bcrypt = require('bcryptjs');
 const authRouter = express.Router();
 const jwt = require('jsonwebtoken');// 회원가입 라우터를 정의합니다.POST 요청을 처리하는 "/api/signup" 경로를 정의합니다.클라이언트가 회원가입 정보를 전송하면 이 핸들러가 실행됩니다.
-authRouter.post("/api/signup", async (req, res) => {
 
+authRouter.post("/api/signup", async (req, res) => {
   // 클라이언트가 전송한 회원가입 정보를 req.body에서 가져옵니다.fullname, email, password를 추출합니다.
   try {
     const { fullname, email, password } = req.body;
@@ -25,9 +25,14 @@ authRouter.post("/api/signup", async (req, res) => {
       res.json({ user }); // 사용자 정보를 반환합니다.
     }
   console.timeEnd("전체 회원 로그입 ")
-  } catch (error) {
-    return res.status(500).json({ error: error.message });// 에러가 발생하면 500 상태 코드와 함께 에러 메시지를 반환합니다.
+} catch (error) {
+  if (error.name === "ValidationError") {
+    const messages = Object.values(error.errors).map((e) => e.message);
+    return res.status(400).json({ message: messages[0] }); // ← 여기!
   }
+
+  return res.status(500).json({ message: error.message || "서버 오류가 발생했습니다." });
+}
 });
 
 module.exports = authRouter;
