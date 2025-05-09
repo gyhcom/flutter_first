@@ -82,7 +82,7 @@ class AuthController {
         onSuccess: () {
           Navigator.pushAndRemoveUntil(
             context,
-            MaterialPageRoute(builder: (context) => MainScreen()),
+            MaterialPageRoute(builder: (context) => const MainScreen()),
             (route) => false,
           );
           print("✅ onSuccess 콜백 호출됨");
