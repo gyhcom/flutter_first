@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:store_app/views/screens/nav_screens/account_screen.dart';
+import 'package:store_app/views/screens/nav_screens/cart_screen.dart';
+import 'package:store_app/views/screens/nav_screens/favorite_screen.dart';
+import 'package:store_app/views/screens/nav_screens/home_screen.dart';
+import 'package:store_app/views/screens/nav_screens/stores_screen.dart';
 
 class MainScreen extends StatefulWidget {
   @override
@@ -6,8 +11,15 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  int _pageIndex = 0;
-
+  int _pageIndex = 0; //페이지 인덱스 설정
+  final List<Widget> _pages = [
+    //여기서 각 스크린을 추가해주면 됩니다.
+    HomeScreen(),
+    FavoriteScreen(),
+    StoresScreen(),
+    CartScreen(),
+    AccountScreen(),
+  ]; //
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,6 +56,7 @@ class _MainScreenState extends State<MainScreen> {
           ),
         ],
       ),
+      body: _pages[_pageIndex],
     );
   }
 }
