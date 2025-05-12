@@ -15,6 +15,33 @@ class HeaderWidget extends StatelessWidget {
             width: MediaQuery.of(context).size.width,
             fit: BoxFit.cover,
           ),
+
+          Positioned(
+            left: 48,
+            top: 68,
+            child: SizedBox(
+              width: 250,
+              height: 50,
+              child: TextField(
+                decoration: InputDecoration(
+                  hintText: 'Enter text',
+                  hintStyle: const TextStyle(
+                    fontSize: 14,
+                    color: Color(0xff7f7f7f),
+                  ),
+                  contentPadding: const EdgeInsets.symmetric(
+                    horizontal: 12,
+                    vertical: 16,
+                  ),
+                  prefixIcon: Image.asset('assets/icons/searc1.png'),
+                  suffixIcon: Image.asset('assets/icons/cam.png'),
+                  fillColor: Colors.grey.shade200,
+                  filled: true,
+                  focusColor: Colors.black,
+                ),
+              ),
+            ),
+          ),
         ],
       ),
     );
