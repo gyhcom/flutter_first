@@ -5,7 +5,7 @@ class HeaderWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height * 0.20,
       child: Stack(
@@ -38,6 +38,47 @@ class HeaderWidget extends StatelessWidget {
                   fillColor: Colors.grey.shade200,
                   filled: true,
                   focusColor: Colors.black,
+                ),
+              ),
+            ),
+          ),
+
+          Positioned(
+            left: 311,
+            top: 78,
+            child: Material(
+              type: MaterialType.transparency,
+
+              child: InkWell(
+                onTap: () {},
+                child: Ink(
+                  width: 31,
+                  height: 31,
+                  decoration: const BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage('assets/icons/bell.png'),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+
+          Positioned(
+            left: 354,
+            top: 78,
+            child: Material(
+              type: MaterialType.transparency,
+              child: InkWell(
+                onTap: () {},
+                child: Ink(
+                  width: 31,
+                  height: 31,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage('assets/icons/message.png'),
+                    ),
+                  ),
                 ),
               ),
             ),

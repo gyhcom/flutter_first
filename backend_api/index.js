@@ -3,6 +3,7 @@ const express = require("express");
 const helloRoute = require("./routes/hello");
 const mongoose = require("mongoose");
 const authRouter = require("./routes/auth");
+const bannerRouter = require("./routes/banner");
 
 // 🔧 서버 포트 번호 정의
 const PORT = 3000;
@@ -22,6 +23,9 @@ app.use(authRouter);
 
 // 👋 기본 테스트용 라우터 등록 (helloRoute)
 app.use(helloRoute);
+
+// 🖼️ 배너 관련 라우터 등록 (/api/banner 등 처리)
+app.use(bannerRouter);
 
 // 🔗 MongoDB와 연결
 mongoose.connect(DB).then(() => {
