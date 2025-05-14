@@ -4,6 +4,7 @@ const helloRoute = require("./routes/hello");
 const mongoose = require("mongoose");
 const authRouter = require("./routes/auth");
 const bannerRouter = require("./routes/banner");
+const categoryRouter = require("./routres/category");
 
 // 🔧 서버 포트 번호 정의
 const PORT = 3000;
