@@ -4,7 +4,8 @@ const helloRoute = require("./routes/hello");
 const mongoose = require("mongoose");
 const authRouter = require("./routes/auth");
 const bannerRouter = require("./routes/banner");
-const categoryRouter = require("./routres/category");
+const categoryRouter = require("./routes/category");
+const subCategoryRouter = require("./routes/sub_category");
 
 // 🔧 서버 포트 번호 정의
 const PORT = 3000;
@@ -25,8 +26,13 @@ app.use(authRouter);
 // 👋 기본 테스트용 라우터 등록 (helloRoute)
 app.use(helloRoute);
 
+// 📂 카테고리 관련 라우터 등록 (/api/category 등 처리
+app.use(categoryRouter);
 // 🖼️ 배너 관련 라우터 등록 (/api/banner 등 처리)
 app.use(bannerRouter);
+
+// 📂 서브 카테고리 관련 라우터 등록 (/api/sub_category 등 처리
+app.use(subCategoryRouter);
 
 // 🔗 MongoDB와 연결
 mongoose.connect(DB).then(() => {

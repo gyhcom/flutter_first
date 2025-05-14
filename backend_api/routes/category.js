@@ -17,4 +17,13 @@ categoryRouter.post('/api/category', async(req, res) => {
     }
 });
 
-module.exports = categorRouter;
+categoryRouter.get('/api/category', async(req, res) => {
+    try{
+        const categories = await Category.find();
+        return res.status(200).json({categories})
+    } catch (e){
+        res.status(500).json({error: e.message});
+    }
+});
+
+module.exports =categoryRouter;
