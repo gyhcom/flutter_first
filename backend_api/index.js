@@ -7,6 +7,7 @@ const bannerRouter = require("./routes/banner");
 const categoryRouter = require("./routes/category");
 const subCategoryRouter = require("./routes/sub_category");
 const productRouter = require("./routes/product");
+const productReviewRouter = require("./routes/product_review");
 
 // 🔧 서버 포트 번호 정의
 const PORT = 3000;
@@ -37,6 +38,9 @@ app.use(subCategoryRouter);
 
 // 📦 상품 관련 라우터 등록 (/api/product 등 처리
 app.use(productRouter);
+
+// ⭐ 상품 리뷰 관련 라우터 등록 (/api/product-review 등 처리
+app.use(productReviewRouter);
 
 // 🔗 MongoDB와 연결
 mongoose.connect(DB).then(() => {
