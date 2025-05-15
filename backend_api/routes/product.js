@@ -29,4 +29,17 @@ productRouter.get('/api/popular-products', async (req, res) => {
     }
 });
 
+productRouter.get('/api/recommended-products', async (req, res) => {
+    try {
+        const products = await Product.find({ recommend: true });
+        if (!products || products.length === 0) {
+            return res.status(404).json({ msg: "추천 상품이 없습니다." });
+        } else {
+            res.status(200).json({ products });
+        }
+    } catch (e) {
+        res.status(500).json({ error: e.message });
+    }
+});
+
 module.exports = productRouter;
