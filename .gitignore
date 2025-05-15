@@ -1,29 +1,32 @@
-# Miscellaneous
+# ---------------------
+# 🌐 General
+# ---------------------
 *.class
 *.log
 *.pyc
 *.swp
+*.tmp
+*.lock
 .DS_Store
 .atom/
-.build/
 .buildlog/
 .history
 .svn/
 .swiftpm/
 migrate_working_dir/
 
-# IntelliJ related
+# ---------------------
+# 🧠 IDE Related
+# ---------------------
 *.iml
 *.ipr
 *.iws
 .idea/
+.vscode/    # ← 원하면 포함하지 않아도 됨 (공유하고 싶으면 제외)
 
-# The .vscode folder contains launch configuration and tasks you configure in
-# VS Code which you may wish to be included in version control, so this line
-# is commented out by default.
-#.vscode/
-
-# Flutter/Dart/Pub related
+# ---------------------
+# 🚀 Flutter & Dart
+# ---------------------
 **/doc/api/
 **/ios/Flutter/.last_build_id
 .dart_tool/
@@ -31,21 +34,56 @@ migrate_working_dir/
 .flutter-plugins-dependencies
 .pub-cache/
 .pub/
-/build/
+build/
 
-# Symbolication related
+# Flutter symbol / obfuscation
 app.*.symbols
-
-# Obfuscation related
 app.*.map.json
 
-# Android Studio will place build artifacts here
+# Android
+android/.gradle/
+android/.idea/
+android/local.properties
+android/.DS_Store
 /android/app/debug
 /android/app/profile
 /android/app/release
 
-# 개인 설정 무시
+# iOS
+ios/Flutter/Flutter.framework
+ios/Flutter/Flutter.podspec
+ios/Runner.xcworkspace
+ios/.symlinks/
+ios/Pods/
+ios/.DS_Store
+ios/.generated/
+ios/.dart_tool/
 ios/Runner.xcworkspace/contents.xcworkspacedata
 
-# 백엔드 노드모듈
-/backend_api/node_modules/
+# Linux, macOS, Windows
+linux/build/
+macos/build/
+windows/build/
+
+# ---------------------
+# 📦 Node.js (backend)
+# ---------------------
+backend_api/node_modules/
+backend_api/.env
+backend_api/npm-debug.log
+backend_api/dist/
+
+# ---------------------
+# 🌐 Flutter Sub-App (app_web)
+# ---------------------
+app_web/build/
+app_web/.dart_tool/
+app_web/.idea/
+app_web/.DS_Store
+
+# ---------------------
+# 🔐 Secrets & Environment
+# ---------------------
+.env
+.env.*
+firebase-debug.log
