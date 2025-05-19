@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 
 class ProductsScreen extends StatelessWidget {
-  static const String id = 'products_screen';
+  static const String id = '\product-screen';
   const ProductsScreen({super.key});
 
   @override

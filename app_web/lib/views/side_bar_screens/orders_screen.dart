@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 
 class OrdersScreen extends StatelessWidget {
-  static const String id = 'orders_screen';
+  static const String id = '\orders-screen';
   const OrdersScreen({super.key});
 
   @override
