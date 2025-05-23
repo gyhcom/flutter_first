@@ -1,9 +1,30 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:file_picker/file_picker.dart';
 
-class CategoryScreen extends StatelessWidget {
+class CategoryScreen extends StatefulWidget {
   static const String id = '\category-screen';
   const CategoryScreen({super.key});
+
+  @override
+  State<CategoryScreen> createState() => _CategoryScreenState();
+}
+
+class _CategoryScreenState extends State<CategoryScreen> {
+  dynamic _image;
+
+  pickImage() async {
+    FilePickerResult? result = await FilePicker.platform.pickFiles(
+      type: FileType.image,
+      allowMultiple: false,
+    );
+
+    if (result != null) {
+      setState(() {
+        _image = result.files.first.bytes;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +55,9 @@ class CategoryScreen extends StatelessWidget {
                 color: Colors.grey,
                 borderRadius: BorderRadius.circular(5),
               ),
-              child: Center(child: Text('카테고리 이미지')),
+              child: Center(
+                child: _image != null ? Image.memory(_image) : Text('카테고리 이미지'),
+              ),
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
@@ -52,7 +75,12 @@ class CategoryScreen extends StatelessWidget {
         ),
         Padding(
           padding: const EdgeInsets.all(8.0),
-          child: ElevatedButton(onPressed: () {}, child: Text('Pick Image')),
+          child: ElevatedButton(
+            onPressed: () {
+              pickImage();
+            },
+            child: Text('Pick Image'),
+          ),
         ),
         Divider(color: Colors.grey),
       ],
