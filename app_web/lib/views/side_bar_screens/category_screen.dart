@@ -1,3 +1,4 @@
+import 'package:app_web/controllers/category_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
@@ -12,6 +13,7 @@ class CategoryScreen extends StatefulWidget {
 
 class _CategoryScreenState extends State<CategoryScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final CategoryController _categoryController = CategoryController();
   late String categoryName;
   dynamic _bannerImage;
   dynamic _image;
@@ -101,9 +103,12 @@ class _CategoryScreenState extends State<CategoryScreen> {
               TextButton(onPressed: () {}, child: Text('cancle')),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(backgroundColor: Colors.blue),
-                onPressed: () {
+                onPressed: () async {
                   if (_formKey.currentState!.validate()) {
-                    print('Category Name: $categoryName');
+                    _categoryController.uploadCategory(
+                      pickedImage: _image,
+                      pickedBanner: _bannerImage,
+                    );
                   }
                 },
                 child: Text('Save', style: TextStyle(color: Colors.white)),
