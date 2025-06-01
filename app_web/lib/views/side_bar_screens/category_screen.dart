@@ -108,6 +108,8 @@ class _CategoryScreenState extends State<CategoryScreen> {
                     _categoryController.uploadCategory(
                       pickedImage: _image,
                       pickedBanner: _bannerImage,
+                      name: categoryName,
+                      context: context,
                     );
                   }
                 },
