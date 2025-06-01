@@ -2,6 +2,7 @@ import 'package:app_web/global_variable.dart';
 import 'package:app_web/models/category.dart';
 import 'package:app_web/services/manage_http_response.dart';
 import 'package:cloudinary_public/cloudinary_public.dart';
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class CategoryController {
@@ -51,9 +52,8 @@ class CategoryController {
         response: response,
         context: context,
         onSuccess: () {
-          showSnackBar(
-            context: context,
-            content: 'Category uploaded successfully',
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('Category uploaded successfully!')),
           );
         },
       );
