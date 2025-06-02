@@ -8,6 +8,8 @@ const categoryRouter = require("./routes/category");
 const subCategoryRouter = require("./routes/sub_category");
 const productRouter = require("./routes/product");
 const productReviewRouter = require("./routes/product_review");
+const cors = require("cors");
+// 🔒 CORS 설정
 
 // 🔧 서버 포트 번호 정의
 const PORT = 3000;
@@ -18,6 +20,9 @@ const DB =
 
 // 🚀 Express 애플리케이션 인스턴스 생성
 const app = express();
+
+// 🔗 CORS 미들웨어 등록
+app.use(cors())
 
 // 📥 JSON 요청 본문 파싱 미들웨어 등록
 app.use(express.json());
@@ -41,6 +46,8 @@ app.use(productRouter);
 
 // ⭐ 상품 리뷰 관련 라우터 등록 (/api/product-review 등 처리
 app.use(productReviewRouter);
+
+
 
 // 🔗 MongoDB와 연결
 mongoose.connect(DB).then(() => {

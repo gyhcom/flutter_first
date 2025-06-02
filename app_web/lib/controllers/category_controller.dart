@@ -41,7 +41,7 @@ class CategoryController {
         banner: banner,
       );
       http.Response response = await http.post(
-        Uri.parse("$uri/api/categories"),
+        Uri.parse("$uri/api/category"),
         body: category.toJson(),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
