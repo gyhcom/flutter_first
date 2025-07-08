@@ -44,6 +44,30 @@ class _CategoryScreenState extends State<CategoryScreen> {
     }
   }
 
+  bool _validateForm() {
+    // 폼 검증
+    if (!_formKey.currentState!.validate()) {
+      return false;
+    }
+
+    // 이미지 선택 여부 검증
+    if (_image == null) {
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text('카테고리 이미지를 선택해주세요.')));
+      return false;
+    }
+
+    if (_bannerImage == null) {
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text('카테고리 배너를 선택해주세요.')));
+      return false;
+    }
+
+    return true;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -74,6 +98,10 @@ class _CategoryScreenState extends State<CategoryScreen> {
                 decoration: BoxDecoration(
                   color: Colors.grey,
                   borderRadius: BorderRadius.circular(5),
+                  border:
+                      _image == null
+                          ? Border.all(color: Colors.red, width: 2)
+                          : null,
                 ),
                 child: Center(
                   child:
@@ -100,11 +128,11 @@ class _CategoryScreenState extends State<CategoryScreen> {
                 ),
               ),
 
-              TextButton(onPressed: () {}, child: Text('cancle')),
+              TextButton(onPressed: () {}, child: Text('취소')),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(backgroundColor: Colors.blue),
                 onPressed: () async {
-                  if (_formKey.currentState!.validate()) {
+                  if (_validateForm()) {
                     _categoryController.uploadCategory(
                       pickedImage: _image,
                       pickedBanner: _bannerImage,
@@ -113,7 +141,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
                     );
                   }
                 },
-                child: Text('Save', style: TextStyle(color: Colors.white)),
+                child: Text('저장', style: TextStyle(color: Colors.white)),
               ),
             ],
           ),
@@ -123,7 +151,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
               onPressed: () {
                 pickImage();
               },
-              child: Text('Pick Image'),
+              child: Text('이미지 선택'),
             ),
           ),
           const Divider(color: Colors.grey),
@@ -134,6 +162,10 @@ class _CategoryScreenState extends State<CategoryScreen> {
             decoration: BoxDecoration(
               color: Colors.black,
               borderRadius: BorderRadius.circular(5),
+              border:
+                  _bannerImage == null
+                      ? Border.all(color: Colors.red, width: 2)
+                      : null,
             ),
             child: Center(
               child:
@@ -148,7 +180,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
               onPressed: () {
                 pickBannerImage();
               },
-              child: Text('Pick Image'),
+              child: Text('배너 선택'),
             ),
           ),
         ],

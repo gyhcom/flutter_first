@@ -9,6 +9,11 @@ const categorySchema = mongoose.Schema({
     image:{
         type:String,
         required:true,
+    },
+
+    banner:{
+        type:String,
+        required:true,
     }
 });
 

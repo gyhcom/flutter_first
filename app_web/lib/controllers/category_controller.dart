@@ -13,6 +13,21 @@ class CategoryController {
     required context,
   }) async {
     try {
+      // 이미지와 배너가 선택되었는지 확인
+      if (pickedImage == null) {
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text('카테고리 이미지를 선택해주세요.')));
+        return;
+      }
+
+      if (pickedBanner == null) {
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text('카테고리 배너를 선택해주세요.')));
+        return;
+      }
+
       final cloudinary = CloudinaryPublic('dmw9txkjr', 'ymg0fxf2');
 
       //upload image
@@ -52,13 +67,16 @@ class CategoryController {
         response: response,
         context: context,
         onSuccess: () {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text('Category uploaded successfully!')),
-          );
+          ScaffoldMessenger.of(
+            context,
+          ).showSnackBar(SnackBar(content: Text('카테고리가 성공적으로 업로드되었습니다!')));
         },
       );
     } catch (e) {
       print('Error uploading category: $e');
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text('카테고리 업로드 중 오류가 발생했습니다: $e')));
     }
   }
 }
