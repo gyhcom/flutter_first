@@ -98,10 +98,6 @@ class _CategoryScreenState extends State<CategoryScreen> {
                 decoration: BoxDecoration(
                   color: Colors.grey,
                   borderRadius: BorderRadius.circular(5),
-                  border:
-                      _image == null
-                          ? Border.all(color: Colors.red, width: 2)
-                          : null,
                 ),
                 child: Center(
                   child:
@@ -162,10 +158,6 @@ class _CategoryScreenState extends State<CategoryScreen> {
             decoration: BoxDecoration(
               color: Colors.black,
               borderRadius: BorderRadius.circular(5),
-              border:
-                  _bannerImage == null
-                      ? Border.all(color: Colors.red, width: 2)
-                      : null,
             ),
             child: Center(
               child:
