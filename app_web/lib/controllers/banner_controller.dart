@@ -65,6 +65,8 @@ class BannerController {
           List<BannerModel> banners =
               data.map((banner) => BannerModel.fromJson(banner)).toList();
           return banners;
+        } else {
+          throw Exception('배너를 불러오는 데 실패했습니다.');
         }
       } catch (e) {}
     }
