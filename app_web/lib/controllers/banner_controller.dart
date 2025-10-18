@@ -68,7 +68,9 @@ class BannerController {
         } else {
           throw Exception('배너를 불러오는 데 실패했습니다.');
         }
-      } catch (e) {}
+      } catch (e) {
+        throw Exception('배너를 불러오는 데 실패했습니다.');
+      }
     }
   }
 }
