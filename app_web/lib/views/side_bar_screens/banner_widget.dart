@@ -34,6 +34,8 @@ class _BannerWidgetState extends State<BannerWidget> {
         } else {
           final banners = snapshot.data!;
           return GridView.builder(
+            shrinkWrap: true,
+            itemCount: banners.length,
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 6,
               crossAxisSpacing: 8,
