@@ -1,4 +1,5 @@
 import 'package:app_web/controllers/banner_controller.dart';
+import 'package:app_web/views/side_bar_screens/banner_widget.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -74,6 +75,8 @@ class _UploadBannerScreenState extends State<UploadBannerScreen> {
           padding: const EdgeInsets.all(8.0),
           child: ElevatedButton(onPressed: pickImage, child: Text('이미지 선택하기')),
         ),
+        Divider(color: Colors.grey),
+        BannerWidget(),
       ],
     );
   }

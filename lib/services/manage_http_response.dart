@@ -31,4 +31,5 @@ void ManageHttpResponse({
 void showSnackBar(BuildContext context, String title) {
   ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(title)));
 }
+
 // SnackBar: Flutter에서 사용자에게 간단한 메시지를 표시하는 위젯

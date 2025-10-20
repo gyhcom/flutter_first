@@ -45,32 +45,31 @@ class BannerController {
     } catch (e) {
       print(e);
     }
+  }
 
-    //fetch banners
+  //fetch banners
+  Future<List<BannerModel>> loadBanners() async {
+    try {
+      //send an http get request to fetch banners
+      http.Response response = await http.get(
+        Uri.parse("$uri/api/banner"),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+      );
 
-    Future<List<BannerModel>> loadBanners() async {
-      try {
-        //send an http get request to fetch banners
-        http.Response response = await http.get(
-          Uri.parse("$uri/api/banner"),
-          headers: <String, String>{
-            'Content-Type': 'application/json; charset=UTF-8',
-          },
-        );
-
-        print(response.body);
-        if (response.statusCode == 200) {
-          //ok
-          List<dynamic> data = jsonDecode(response.body);
-          List<BannerModel> banners =
-              data.map((banner) => BannerModel.fromJson(banner)).toList();
-          return banners;
-        } else {
-          throw Exception('배너를 불러오는 데 실패했습니다.');
-        }
-      } catch (e) {
+      print(response.body);
+      if (response.statusCode == 200) {
+        //ok
+        List<dynamic> data = jsonDecode(response.body);
+        List<BannerModel> banners =
+            data.map((banner) => BannerModel.fromJson(banner)).toList();
+        return banners;
+      } else {
         throw Exception('배너를 불러오는 데 실패했습니다.');
       }
+    } catch (e) {
+      throw Exception('배너를 불러오는 데 실패했습니다.');
     }
   }
 }
