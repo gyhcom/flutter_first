@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:app_web/global_variable.dart';
 import 'package:app_web/models/category.dart';
 import 'package:app_web/services/manage_http_response.dart';
@@ -77,6 +79,28 @@ class CategoryController {
       ScaffoldMessenger.of(
         context,
       ).showSnackBar(SnackBar(content: Text('카테고리 업로드 중 오류가 발생했습니다: $e')));
+    }
+  }
+
+  Future<List<Category>> loadCategories() async {
+    try {
+      http.Response response = await http.get(Uri.parse('$uri/api/categories'),
+        headers: <String, String>{
+          "Content-Type": 'application/json; charset=UTF-8',
+        },
+      );
+      print(response.body);
+
+      if(response.statusCode == 200) {
+        final List<dynamic> data = jsonDecode(response.body);
+        List<Category> categories = data.map((category)=> Category.fromJson(category)).toList();
+
+        return categories;
+      } else{
+        throw Exception('카테고리를 불러오지 못했습니다.');
+      }
+    } catch (e) {
+      throw Exception('카테고리를 불러오는 중 오류가 발생했습니다: $e');
     }
   }
 }
