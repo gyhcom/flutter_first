@@ -84,19 +84,21 @@ class CategoryController {
 
   Future<List<Category>> loadCategories() async {
     try {
-      http.Response response = await http.get(Uri.parse('$uri/api/categories'),
+      http.Response response = await http.get(
+        Uri.parse('$uri/api/categories'),
         headers: <String, String>{
           "Content-Type": 'application/json; charset=UTF-8',
         },
       );
       print(response.body);
 
-      if(response.statusCode == 200) {
+      if (response.statusCode == 200) {
         final List<dynamic> data = jsonDecode(response.body);
-        List<Category> categories = data.map((category)=> Category.fromJson(category)).toList();
+        List<Category> categories =
+            data.map((category) => Category.fromJson(category)).toList();
 
         return categories;
-      } else{
+      } else {
         throw Exception('카테고리를 불러오지 못했습니다.');
       }
     } catch (e) {
