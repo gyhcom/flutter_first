@@ -1,6 +1,5 @@
 import 'package:app_web/controllers/category_controller.dart';
 import 'package:app_web/views/side_bar_screens/widgets/category_widget.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
 

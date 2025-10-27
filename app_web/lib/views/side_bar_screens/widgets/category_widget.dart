@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import '../../../models/category.dart';
 
 class CategoryWidget extends StatefulWidget {
+  static const String id ='subCategoryScreen';
   const CategoryWidget({super.key});
 
   @override
