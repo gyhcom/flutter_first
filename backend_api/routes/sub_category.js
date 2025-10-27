@@ -20,7 +20,7 @@ subCategoryRouter.post('/api/subcategories', async(req, res) =>{
 
 });
 
-subCategoryRouter.get('/api/category/:categoryName/subcategories', async (req, res) => {
+subCategoryRouter.get('/api/categories/:categoryName/subcategories', async (req, res) => {
     try {
         const {categoryName} = req.params;
     

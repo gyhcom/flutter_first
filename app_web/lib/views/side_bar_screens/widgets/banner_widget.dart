@@ -1,7 +1,7 @@
 import 'package:app_web/controllers/banner_controller.dart';
 import 'package:flutter/material.dart';
 
-import '../../models/banner.dart';
+import '../../../models/banner.dart';
 
 class BannerWidget extends StatefulWidget {
   const BannerWidget({super.key});
