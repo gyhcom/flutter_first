@@ -90,7 +90,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
               padding: const EdgeInsets.all(4.0),
               child: Divider(color: Colors.grey),
             ),
-        
+
             Row(
               children: [
                 Container(
@@ -102,7 +102,9 @@ class _CategoryScreenState extends State<CategoryScreen> {
                   ),
                   child: Center(
                     child:
-                        _image != null ? Image.memory(_image) : Text('카테고리 이미지'),
+                        _image != null
+                            ? Image.memory(_image)
+                            : Text('카테고리 이미지'),
                   ),
                 ),
                 Padding(
@@ -124,7 +126,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
                     ),
                   ),
                 ),
-        
+
                 TextButton(onPressed: () {}, child: Text('취소')),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(backgroundColor: Colors.blue),
@@ -152,7 +154,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
               ),
             ),
             const Divider(color: Colors.grey),
-        
+
             Container(
               width: 150,
               height: 150,
@@ -164,7 +166,10 @@ class _CategoryScreenState extends State<CategoryScreen> {
                 child:
                     _bannerImage != null
                         ? Image.memory(_bannerImage)
-                        : Text('카테고리 배너', style: TextStyle(color: Colors.white)),
+                        : Text(
+                          '카테고리 배너',
+                          style: TextStyle(color: Colors.white),
+                        ),
               ),
             ),
             Padding(
@@ -176,9 +181,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
                 child: Text('배너 선택'),
               ),
             ),
-            const Divider(
-              color: Colors.grey,
-            ),
+            const Divider(color: Colors.grey),
             CategoryWidget(),
           ],
         ),

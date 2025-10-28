@@ -43,7 +43,7 @@ class _MainScreenState extends State<MainScreen> {
         break;
       case SubcategoryScreen.id:
         setState(() {
-          _selectedScreen = const CategoryScreen();
+          _selectedScreen = const SubcategoryScreen();
         });
         break;
       case UploadBannerScreen.id:
